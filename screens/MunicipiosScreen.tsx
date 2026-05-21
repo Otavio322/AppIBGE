@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, ScrollView, Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getMunicipios } from '../services/ibgeService';
 import { Municipio, Estado } from '../types/ibge';
 
@@ -20,7 +21,7 @@ export default function MunicipiosScreen({ route }: any) {
   if (erro) return <Text style={styles.center}>{erro}</Text>;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>📍 {estado.nome}</Text>
       <ScrollView nestedScrollEnabled={true} bounces={true}>
         {municipios.map((item) => (
@@ -29,12 +30,12 @@ export default function MunicipiosScreen({ route }: any) {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 50, paddingHorizontal: 16 },
+  container: { flex: 1, paddingHorizontal: 16 },
   center: { flex: 1, textAlign: 'center', marginTop: 100 },
   titulo: { fontSize: 22, fontWeight: 'bold', marginBottom: 16 },
   item: { paddingVertical: 10, borderBottomWidth: 1, borderColor: '#ddd' },
