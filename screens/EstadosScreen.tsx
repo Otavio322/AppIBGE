@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getEstados } from '../services/ibgeService';
 import { Estado } from '../types/ibge';
 
@@ -19,7 +20,7 @@ export default function EstadosScreen({ navigation }: any) {
   if (erro) return <Text style={styles.center}>{erro}</Text>;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>Estados do Brasil 🇧🇷</Text>
       <ScrollView nestedScrollEnabled={true} bounces={true}>
         {estados.map((item) => (
@@ -33,12 +34,12 @@ export default function EstadosScreen({ navigation }: any) {
           </TouchableOpacity>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 50, paddingHorizontal: 16 },
+  container: { flex: 1, paddingHorizontal: 16 },
   center: { flex: 1, textAlign: 'center', marginTop: 100 },
   titulo: { fontSize: 22, fontWeight: 'bold', marginBottom: 16 },
   item: { flexDirection: 'row', gap: 12, paddingVertical: 10, borderBottomWidth: 1, borderColor: '#ddd' },
